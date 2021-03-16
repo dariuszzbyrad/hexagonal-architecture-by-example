@@ -6,3 +6,4 @@
 target/
 /build/
 /.gradle/
+/src/test/resources/frozen/

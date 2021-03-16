@@ -1,10 +1,9 @@
 import com.tngtech.archunit.core.importer.ClassFileImporter
 import com.tngtech.archunit.core.importer.ImportOption
-import spock.lang.Specification
 
 import static com.tngtech.archunit.library.dependencies.SlicesRuleDefinition.slices
 
-class CyclicDependenciesSpec extends Specification {
+class CyclicDependenciesSpec extends ArchUnitSpec {
 
     static classes = new ClassFileImporter()
         .withImportOption(ImportOption.Predefined.DO_NOT_INCLUDE_JARS)
@@ -14,7 +13,7 @@ class CyclicDependenciesSpec extends Specification {
     def "application should be free of cycles"() {
         given:
         def rule = slices()
-            .matching("tech.allegro.hexagon.(*)..")
+            .matching(APP_PACKAGE + '.(*)..')
             .should().beFreeOfCycles()
 
         expect:

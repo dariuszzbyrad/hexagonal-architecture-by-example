@@ -1,17 +1,9 @@
-import com.tngtech.archunit.core.importer.ClassFileImporter
-import com.tngtech.archunit.core.importer.ImportOption
 import org.springframework.context.annotation.Configuration
 import org.springframework.web.bind.annotation.RestController
-import spock.lang.Specification
 
 import static com.tngtech.archunit.lang.syntax.ArchRuleDefinition.classes
 
-class NamingConventionSpec extends Specification {
-
-    static classes = new ClassFileImporter()
-        .withImportOption(ImportOption.Predefined.DO_NOT_INCLUDE_JARS)
-        .withImportOption(ImportOption.Predefined.DO_NOT_INCLUDE_TESTS)
-        .importPackages("tech.allegro.hexagon")
+class NamingConventionSpec extends ArchUnitSpec {
 
     def "controllers should have Endpoint suffix"() {
         given:
@@ -20,7 +12,7 @@ class NamingConventionSpec extends Specification {
             .should().haveSimpleNameEndingWith("Endpoint")
 
         expect:
-        rule.check(classes)
+        rule.check(classesToCheck)
     }
 
     def "configuration classes should have Config suffix"() {
@@ -30,6 +22,6 @@ class NamingConventionSpec extends Specification {
             .should().haveSimpleNameEndingWith("Config")
 
         expect:
-        rule.check(classes)
+        rule.check(classesToCheck)
     }
 }

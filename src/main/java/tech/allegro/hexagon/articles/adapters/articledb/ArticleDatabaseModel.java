@@ -1,5 +1,6 @@
 package tech.allegro.hexagon.articles.adapters.articledb;
 
+import org.springframework.data.mongodb.core.index.Indexed;
 import tech.allegro.hexagon.articles.domain.model.Article;
 import tech.allegro.hexagon.articles.domain.model.ArticleId;
 import tech.allegro.hexagon.articles.domain.model.Author;
@@ -18,6 +19,7 @@ class ArticleDatabaseModel {
     private final String content;
     private final long version;
     private final ZonedDateTime createdAt;
+    @Indexed(background = true)
     private final String authorId;
     private final String authorName;
 

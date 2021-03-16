@@ -1,33 +1,24 @@
-import com.tngtech.archunit.core.importer.ClassFileImporter
-import com.tngtech.archunit.core.importer.ImportOption
-import spock.lang.Specification
-
 import static com.tngtech.archunit.lang.syntax.ArchRuleDefinition.noClasses
 
-class LayerAccessSpec extends Specification {
-
-    static classes = new ClassFileImporter()
-        .withImportOption(ImportOption.Predefined.DO_NOT_INCLUDE_JARS)
-        .withImportOption(ImportOption.Predefined.DO_NOT_INCLUDE_TESTS)
-        .importPackages("tech.allegro.hexagon")
+class LayerAccessSpec extends ArchUnitSpec {
 
     def "classes in domain package should not depend on spring classes"() {
         given:
         def rule = noClasses()
-            .that().resideInAPackage("..domain..")
-            .should().dependOnClassesThat().resideInAPackage("org.springframework..")
+            .that().resideInAPackage(DOMAIN_PACKAGE)
+            .should().dependOnClassesThat().resideInAPackage(SPRING_PACKAGE)
 
         expect:
-        rule.check(classes)
+        rule.check(classesToCheck)
     }
 
     def "classes in domain package should not depend on adapters"() {
         given:
         def rule = noClasses()
-            .that().resideInAPackage("..domain..")
-            .should().dependOnClassesThat().resideInAPackage("..adapters..")
+            .that().resideInAPackage(DOMAIN_PACKAGE)
+            .should().dependOnClassesThat().resideInAPackage(ADAPTERS_PACKAGE)
 
         expect:
-        rule.check(classes)
+        rule.check(classesToCheck)
     }
 }

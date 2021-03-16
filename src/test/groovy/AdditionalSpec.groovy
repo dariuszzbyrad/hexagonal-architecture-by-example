@@ -12,7 +12,7 @@ import tech.allegro.hexagon.articles.domain.ports.ArticleRepository
 
 import static com.tngtech.archunit.lang.syntax.ArchRuleDefinition.classes
 
-class AdditionalSpec extends Specification {
+class AdditionalSpec extends ArchUnitSpec {
 
     static classes = new ClassFileImporter()
         .withImportOption(new ImportOption() {
@@ -21,7 +21,7 @@ class AdditionalSpec extends Specification {
                 return !location.contains("/test/")
             }
         })
-        .importPackages("tech.allegro.hexagon")
+        .importPackages(APP_PACKAGE)
 
     def "ArticleRepository class should have correct MD5 sum"() {
         given:
