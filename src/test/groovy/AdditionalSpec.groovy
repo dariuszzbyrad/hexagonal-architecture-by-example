@@ -7,7 +7,6 @@ import com.tngtech.archunit.lang.ArchCondition
 import com.tngtech.archunit.lang.ConditionEvents
 import com.tngtech.archunit.lang.SimpleConditionEvent
 import org.springframework.web.bind.annotation.RestController
-import spock.lang.Specification
 import tech.allegro.hexagon.articles.domain.ports.ArticleRepository
 
 import static com.tngtech.archunit.lang.syntax.ArchRuleDefinition.classes
@@ -45,7 +44,7 @@ class AdditionalSpec extends ArchUnitSpec {
             new ArchCondition<JavaClass>("should reside in api package") {
                 @Override
                 void check(JavaClass item, ConditionEvents events) {
-                    if (!item.getPackage().getName().contains('.adapters.api')) {
+                    if (!item.getPackage().getName().contains(ADAPTERS_PACKAGE)) {
                         String message = String.format(
                             "class %s reside in incorrect package %s", item.getName(), item.getPackageName())
                         events.add(SimpleConditionEvent.violated(item, message))

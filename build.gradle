@@ -20,7 +20,7 @@ dependencies {
     compile group: 'org.spockframework', name: 'spock-spring', version: '1.3-groovy-2.5'
     compile group: 'org.springframework', name: 'spring-core', version: '5.2.9.RELEASE'
     compile group: 'org.springframework.data', name: 'spring-data-mongodb', version: '3.1.5'
-    testImplementation 'com.tngtech.archunit:archunit:0.14.1'
+    testImplementation 'com.tngtech.archunit:archunit:0.17.0'
     testImplementation('org.springframework.boot:spring-boot-starter-test') {
         exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
     }

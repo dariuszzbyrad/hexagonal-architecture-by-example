@@ -5,7 +5,6 @@ import static com.tngtech.archunit.lang.syntax.ArchRuleDefinition.classes
 
 class ClassLocationSpec extends ArchUnitSpec {
 
-    //classes that ${PREDICATE} should ${CONDITION}
     def "controllers should reside in the adapters/api package"() {
         given:
         def rule = classes()

@@ -8,6 +8,7 @@ import static com.tngtech.archunit.lang.syntax.ArchRuleDefinition.fields
 
 class MongoRulesSpec extends ArchUnitSpec {
 
+    //classes/methods/fields that ${PREDICATE} should ${CONDITION}
     def "mongo documents should have configured background indexes"() {
         expect:
         fields().that()

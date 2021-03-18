@@ -19,8 +19,12 @@ class ArticleDatabaseModel {
     private final String content;
     private final long version;
     private final ZonedDateTime createdAt;
+    
+    
     @Indexed(background = true)
     private final String authorId;
+    
+    
     private final String authorName;
 
     private ArticleDatabaseModel(final UUID id,
