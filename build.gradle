@@ -1,33 +1,53 @@
 plugins {
-    id 'org.springframework.boot' version '2.2.2.RELEASE'
-    id 'io.spring.dependency-management' version '1.0.8.RELEASE'
     id 'java'
     id 'groovy'
+    id 'org.springframework.boot' version '2.7.5'
+    id 'io.spring.dependency-management' version '1.1.0'
 }
 
 group = 'tech.allegro'
 version = '0.0.1-SNAPSHOT'
-sourceCompatibility = '11'
+sourceCompatibility = '17'
 
 repositories {
     mavenLocal()
     mavenCentral()
 }
 
+ext {
+    versions = [
+            spock     : '2.1-groovy-3.0',
+            spring    : '6.0.0',
+            springData: '4.0.0',
+            lombok    : '1.18.24',
+            archunit  : '1.0.1'
+    ]
+}
+
 dependencies {
+    // Spring
     implementation 'org.springframework.boot:spring-boot-starter-web'
-    compile group: 'org.projectlombok', name: 'lombok', version: '1.18.2'
-    compile group: 'org.spockframework', name: 'spock-spring', version: '1.3-groovy-2.5'
-    compile group: 'org.springframework', name: 'spring-core', version: '5.2.9.RELEASE'
-    compile group: 'org.springframework.data', name: 'spring-data-mongodb', version: '3.1.5'
-    testImplementation 'com.tngtech.archunit:archunit:0.17.0'
-    testImplementation('org.springframework.boot:spring-boot-starter-test') {
-        exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
-    }
+    implementation group: 'org.springframework', name: 'spring-core', version: "${versions.spring}"
+    implementation group: 'org.springframework.data', name: 'spring-data-mongodb', version: "${versions.springData}"
+    testImplementation group: 'org.spockframework', name: 'spock-spring', version: "${versions.spock}"
+    testImplementation group: 'org.springframework.boot', name: 'spring-boot-starter-test'
+
+    // Lombok
+    compileOnly group: 'org.projectlombok', name: 'lombok', version: "${versions.lombok}"
+    annotationProcessor group: 'org.projectlombok', name: 'lombok', version: "${versions.lombok}"
+
+    // Archunit
+    testImplementation group: 'com.tngtech.archunit', name: 'archunit', version: "${versions.archunit}"
+
 }
 
 test {
     testLogging {
         exceptionFormat = 'full'
     }
+    useJUnitPlatform()
+}
+
+wrapper {
+    gradleVersion = '7.5.1'
 }
