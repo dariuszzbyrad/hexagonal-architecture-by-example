@@ -16,7 +16,7 @@ repositories {
 
 ext {
     versions = [
-            spock     : '2.1-groovy-3.0',
+            spock     : '2.3-groovy-4.0',
             spring    : '6.0.0',
             springData: '4.0.0',
             lombok    : '1.18.24',
