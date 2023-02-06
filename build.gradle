@@ -19,7 +19,7 @@ ext {
             spock     : '2.3-groovy-4.0',
             spring    : '6.0.3',
             springData: '4.0.1',
-            lombok    : '1.18.24',
+            lombok    : '1.18.26',
             archunit  : '1.0.1'
     ]
 }
