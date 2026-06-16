@@ -5,10 +5,12 @@ import spock.lang.Specification
 class ArchUnitSpec extends Specification {
 
     static final String APP_PACKAGE = 'tech.allegro.hexagon.articles'
-    static final String ADAPTERS_PACKAGE = APP_PACKAGE + '.adapters'
-    static final String ADAPTERS_SUB_PACKAGES = ADAPTERS_PACKAGE + '..'
-    static final String CONFIG_PACKAGE = APP_PACKAGE + '.config'
-    static final String DOMAIN_PACKAGE = APP_PACKAGE + '.domain'
+    static final String ADAPTERS_ROOT_PACKAGE = APP_PACKAGE + '.adapters'
+    static final String ADAPTERS_PACKAGE = ADAPTERS_ROOT_PACKAGE + '..'
+    static final String API_PACKAGE = ADAPTERS_ROOT_PACKAGE + '.api..'
+    static final String CONFIG_PACKAGE = APP_PACKAGE + '.config..'
+    static final String DOMAIN_ROOT_PACKAGE = APP_PACKAGE + '.domain'
+    static final String DOMAIN_PACKAGE = DOMAIN_ROOT_PACKAGE + '..'
 
     static final String SPRING_PACKAGE = "org.springframework.."
 

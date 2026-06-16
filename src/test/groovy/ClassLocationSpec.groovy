@@ -9,8 +9,8 @@ class ClassLocationSpec extends ArchUnitSpec {
         given:
         def rule = classes()
             .that().areAnnotatedWith(RestController.class)
-            .should().resideInAPackage(ADAPTERS_SUB_PACKAGES)
-            .because("Controllers should reside in the package '{$ADAPTERS_SUB_PACKAGES}'")
+            .should().resideInAPackage(API_PACKAGE)
+            .because("Controllers should reside in the package '${API_PACKAGE}'")
 
         expect:
         rule.check(classesToCheck)

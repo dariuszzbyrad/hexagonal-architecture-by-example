@@ -29,11 +29,11 @@ class MetricsSpec extends ArchUnitSpec {
         MetricsComponents<JavaClass> components = MetricsComponents.fromPackages(packages)
         ComponentDependencyMetrics metrics = ArchitectureMetrics.componentDependencyMetrics(components)
 
-        def Ce = metrics.getEfferentCoupling(DOMAIN_PACKAGE)
-        def Ca = metrics.getAfferentCoupling(DOMAIN_PACKAGE)
-        def I = metrics.getInstability(DOMAIN_PACKAGE)
-        def A = metrics.getAbstractness(DOMAIN_PACKAGE)
-        def D = metrics.getNormalizedDistanceFromMainSequence(DOMAIN_PACKAGE)
+        def Ce = metrics.getEfferentCoupling(DOMAIN_ROOT_PACKAGE)
+        def Ca = metrics.getAfferentCoupling(DOMAIN_ROOT_PACKAGE)
+        def I = metrics.getInstability(DOMAIN_ROOT_PACKAGE)
+        def A = metrics.getAbstractness(DOMAIN_ROOT_PACKAGE)
+        def D = metrics.getNormalizedDistanceFromMainSequence(DOMAIN_ROOT_PACKAGE)
 
         expect:
         Ce == 0 // Efferent Coupling (Ce): The number of outgoing dependencies to any other component
@@ -49,7 +49,7 @@ class MetricsSpec extends ArchUnitSpec {
         MetricsComponents<JavaClass> components = MetricsComponents.fromPackages(packages)
         VisibilityMetrics metrics = ArchitectureMetrics.visibilityMetrics(components)
 
-        def RV = metrics.getRelativeVisibility(DOMAIN_PACKAGE)
+        def RV = metrics.getRelativeVisibility(DOMAIN_ROOT_PACKAGE)
         def ARV = metrics.getAverageRelativeVisibility()
         def GRV = metrics.getGlobalRelativeVisibility()
 
