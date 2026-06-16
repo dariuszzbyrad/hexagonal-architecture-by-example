@@ -1,13 +1,18 @@
 plugins {
     id 'java'
     id 'groovy'
-    id 'org.springframework.boot' version '3.0.2'
-    id 'io.spring.dependency-management' version '1.1.0'
+    id 'org.springframework.boot' version '4.1.0'
+    id 'io.spring.dependency-management' version '1.1.7'
 }
 
 group = 'tech.allegro'
 version = '0.0.1-SNAPSHOT'
-sourceCompatibility = '17'
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(21)
+    }
+}
 
 repositories {
     mavenLocal()
@@ -16,28 +21,25 @@ repositories {
 
 ext {
     versions = [
-            spock     : '2.3-groovy-4.0',
-            spring    : '6.0.4',
-            springData: '4.0.1',
-            lombok    : '1.18.26',
-            archunit  : '1.0.1'
+            spock   : '2.4-groovy-5.0',
+            lombok  : '1.18.46',
+            archunit: '1.4.2'
     ]
 }
 
 dependencies {
     // Spring
     implementation 'org.springframework.boot:spring-boot-starter-web'
-    implementation group: 'org.springframework', name: 'spring-core', version: "${versions.spring}"
-    implementation group: 'org.springframework.data', name: 'spring-data-mongodb', version: "${versions.springData}"
-    testImplementation group: 'org.spockframework', name: 'spock-spring', version: "${versions.spock}"
-    testImplementation group: 'org.springframework.boot', name: 'spring-boot-starter-test'
+    implementation 'org.springframework.data:spring-data-mongodb'
+    testImplementation "org.spockframework:spock-spring:${versions.spock}"
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
 
     // Lombok
-    compileOnly group: 'org.projectlombok', name: 'lombok', version: "${versions.lombok}"
-    annotationProcessor group: 'org.projectlombok', name: 'lombok', version: "${versions.lombok}"
+    compileOnly "org.projectlombok:lombok:${versions.lombok}"
+    annotationProcessor "org.projectlombok:lombok:${versions.lombok}"
 
     // Archunit
-    testImplementation group: 'com.tngtech.archunit', name: 'archunit', version: "${versions.archunit}"
+    testImplementation "com.tngtech.archunit:archunit:${versions.archunit}"
 
 }
 
@@ -49,5 +51,5 @@ test {
 }
 
 wrapper {
-    gradleVersion = '7.5.1'
+    gradleVersion = '9.5.1'
 }
