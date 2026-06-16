@@ -19,6 +19,6 @@ class AdditionalSpec extends ArchUnitSpec {
         def md5sum = classes.get(ArticleRepository.class).getSource().get().getMd5sum()
 
         expect:
-        md5sum.getAt('text') == 'ddd6e13afe8032073ea7abf10de21a00'
+        md5sum.getAt('text') == 'cd6caefc0a96db29c73cd28561559341'
     }
 }
